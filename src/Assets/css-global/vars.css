@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Yeseva+One&display=swap');
+
+:root {
+    --primary: #36454f;
+    --text: #000000;
+    --text-medium: #36454f;
+    --text-light: #d9d9d9;
+    --background: #f2f2f2;
+    --light: #ffffff;
+    --highlight: #ff8a00;
+    --font-display: 'Yeseva One';
+    --font-primary: 'Josefin Sans';
+    --drop-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+::placeholder {
+    color: var(--text-light);
+}
+
+button {
+    border: none;
+    outline: none;
+}
