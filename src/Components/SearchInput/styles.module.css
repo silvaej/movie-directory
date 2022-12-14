@@ -1,0 +1,13 @@
+.searchbar {
+    width: calc(100% - 30px);
+    outline: none;
+    border: none;
+    box-shadow: var(--drop-shadow);
+    border-radius: 10px;
+    padding-left: 30px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 25px;
+    font-family: var(--font-primary);
+}

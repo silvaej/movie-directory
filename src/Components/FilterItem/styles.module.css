@@ -25,3 +25,16 @@
     background-color: transparent;
     cursor: pointer;
 }
+
+.container_selected.container_box {
+    background-color: var(--primary);
+}
+
+.container_selected.container_box > p {
+    color: var(--light);
+}
+
+.container_box,
+.container_box > p {
+    cursor: pointer;
+}

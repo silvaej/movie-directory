@@ -1,0 +1,41 @@
+@import '../../Assets/css-global/vars.css';
+
+.directory_navigation {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.directory_navigation > button {
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.directory_navigation > button > img {
+    height: 30px;
+    aspect-ratio: 1;
+    pointer-events: none;
+}
+
+.prev_nav,
+.next_nav,
+.selected {
+    background-color: var(--primary) !important;
+    box-shadow: var(--drop-shadow) !important;
+    color: var(--light);
+}
+
+.prev_nav {
+    transform: rotate(180deg);
+}

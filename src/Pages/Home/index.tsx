@@ -1,132 +1,94 @@
-import { useState } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 
 /* COMPONENTS */
-import FilterItem from '../../Components/FilterItem'
+import MainToolBar from '../../Components/MainToolBar'
+
+/* REDUCER */
+import filterReducer from '../../Reducers/FilterReducer'
+
+/* CONTEXT */
+import HomeCtx from '../../Context/HomeContext'
+
+/* INTERFACES */
+import FiltersInterface from '../../Interfaces/FilterInterface'
 
 /* STYLING ASSETS */
 import css from './styles.module.css'
-import NavArrow from '../../Assets/images/nav-arrow.svg'
-import SearchIcon from '../../Assets/images/tool-search.svg'
-import FilterIcon from '../../Assets/images/tool-filters.svg'
-import NoResultSticker from '../../Assets/images/no-result-sticker.svg'
+import FilterSection from '../../Components/FilterSection'
+import ResultBox from '../../Components/ResultBox'
+import Pagination from '../../Components/Pagination'
+import { getAllGenres, getPopular } from '../../Utils/api'
+import { MovieSkeleton } from '../../Interfaces/MovieSkeleton'
 
 function Home() {
-    const [activeFilters, setActiveFilters] = useState<Array<string>>([])
-    const [filteredItems, setFilteredItems] = useState<Array<number>>([]) // TO DO: CHANGE THE TYPE
+    const [activeFilters, dispatch] = useReducer(filterReducer, [])
+    const [filters, setFilters] = useState<Array<FiltersInterface>>([])
+    const [page, setPage] = useState<number>(1)
+    const [lastPage, setLastPage] = useState<number>(1)
+    const [loading, setLoading] = useState<boolean>(true)
+    const [results, setResults] = useState<Array<MovieSkeleton>>([])
+    const [selectedMovie, setSelectedMovie] = useState<any>()
     const [openFilterBox, setOpenFilterBox] = useState<boolean>(false)
-    const mockFilters = [
-        'Horror',
-        'Adventure',
-        'Science Fiction',
-        'Romance',
-        'Comedy',
-    ]
 
-    const removeFilter = (title: string) => {
-        setActiveFilters(activeFilters.filter((item) => item !== title))
-    }
+    useEffect(() => {
+        ;(async () => {
+            setLoading(true)
 
-    const clearFilters = () => {
-        setActiveFilters([])
-    }
+            // Retrieving genres
+            const genres = await getAllGenres()
+            setFilters(genres)
 
-    const handleOpenFilter = () => {
-        setOpenFilterBox(!openFilterBox)
-    }
+            // Retrieving movies
+            const [movies, totalPage] = await getPopular(1)
+            const moviesWithGenre = movies.map((movie: any) => {
+                return {
+                    ...movie,
+                    genres: genres
+                        .filter((genre: any) =>
+                            movie.genre_ids.includes(genre.id)
+                        )
+                        .map((genre: any) => genre.name),
+                }
+            })
 
-    const addFilter = (title: string) => {
-        setActiveFilters([...activeFilters, title])
-    }
+            setResults(moviesWithGenre)
+
+            setLastPage(totalPage)
+
+            setLoading(false)
+        })()
+    }, [])
 
     return (
-        <main className={css.container}>
-            <section className={css.movies_directory}>
-                <div className={css.directory_content}>
-                    <div className={css.toolbar}>
-                        <div className={css.main_toolbar}>
-                            <input
-                                className={css.searchbar}
-                                type='text'
-                                placeholder='Search movie title, genre, etc ...'></input>
-                            <button className={css.search_button}>
-                                <img src={SearchIcon} alt='go' />
-                            </button>
-                            <button
-                                className={css.filter_button}
-                                onClick={handleOpenFilter}>
-                                <img src={FilterIcon} alt='filters' />
-                            </button>
-                            {openFilterBox && (
-                                <div className={css.filter_box}>
-                                    {!!activeFilters.length && (
-                                        <div
-                                            className={
-                                                css.filter_box_selected_filters
-                                            }>
-                                            <h1>Selected Filters</h1>
-                                        </div>
-                                    )}
-                                    <div className={css.filter_box_all_filters}>
-                                        <h1>All Filters</h1>
-                                        <div className={css.filter_box_filters}>
-                                            {mockFilters.map((item) => (
-                                                <FilterItem
-                                                    type='box'
-                                                    title={item}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+        <HomeCtx.Provider
+            value={{
+                activeFilters,
+                results,
+                page,
+                loading,
+                lastPage,
+                filters,
+                openFilterBox,
+                dispatch,
+                setOpenFilterBox,
+                setPage,
+                setLoading,
+                setLastPage,
+            }}>
+            <main className={css.container}>
+                <section className={css.movies_directory}>
+                    <div className={css.directory_content}>
+                        <div className={css.toolbar}>
+                            <MainToolBar />
+                            {!!activeFilters.length && <FilterSection />}
                         </div>
-                        {!!activeFilters.length && (
-                            <div className={css.filter_section}>
-                                <div className={css.filter_list_container}>
-                                    {activeFilters.map((item) => (
-                                        <FilterItem
-                                            type='display'
-                                            title={item}
-                                            handleX={removeFilter}
-                                        />
-                                    ))}
-                                </div>
-                                <div
-                                    className={css.clear_filter}
-                                    onClick={clearFilters}>
-                                    Clear Filter
-                                </div>
-                            </div>
-                        )}
+                        <ResultBox />
                     </div>
-                    <div className={css.result}>
-                        {!filteredItems.length ? (
-                            <div className={css.no_result_container}>
-                                <img
-                                    src={NoResultSticker}
-                                    alt='no result'></img>
-                                <h1>No Results Found</h1>
-                                <p>
-                                    We cannot find the item matching your search
-                                    😞 Please try again.
-                                </p>
-                            </div>
-                        ) : (
-                            <div className={css.result_container}></div>
-                        )}
-                    </div>
-                </div>
-                <div className={css.directory_navigation}>
-                    <button className={css.prev_nav}>
-                        <img src={NavArrow} alt='nav-prev' />
-                    </button>
-                    <button className={css.next_nav}>
-                        <img src={NavArrow} alt='next-prev' />
-                    </button>
-                </div>
-            </section>
-            <section className={css.movie_information}></section>
-        </main>
+                    <Pagination />
+                </section>
+                <section className={css.movie_information}></section>
+            </main>
+        </HomeCtx.Provider>
     )
 }
 
