@@ -1,20 +1,47 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
 import css from './styles.module.css'
-import NavArrow from '../../Assets/images/nav-arrow.svg'
+import FIRST from '../../Assets/images/pagination-first.svg'
+import LAST from '../../Assets/images/pagination-last.svg'
+import NEXT from '../../Assets/images/pagination-next.svg'
+import PREV from '../../Assets/images/pagination-prev.svg'
+import HomeCtx from '../../Context/HomeContext'
 
 function Pagination() {
+    const { page, lastPage, setPage } = useContext(HomeCtx)
     return (
         <div className={css.directory_navigation}>
-            <button className={css.prev_nav}>
-                <img src={NavArrow} alt='nav-prev' />
+            <button
+                disabled={page === 1}
+                onClick={() => {
+                    if (setPage && page && page > 1) setPage(1)
+                }}>
+                <img src={FIRST} alt='first'></img>
             </button>
-            <button className={css.selected}>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>10</button>
-            <button className={css.next_nav}>
-                <img src={NavArrow} alt='next-prev' />
+            <button
+                disabled={page === 1}
+                onClick={() => {
+                    if (setPage && page && page > 1) setPage(page - 1)
+                }}>
+                <img src={PREV} alt='prev'></img>
+            </button>
+            <p>
+                Page {page} of {lastPage}
+            </p>
+            <button
+                disabled={page === lastPage}
+                onClick={() => {
+                    if (setPage && page && lastPage && page < lastPage)
+                        setPage(page + 1)
+                }}>
+                <img src={NEXT} alt='next'></img>
+            </button>
+            <button
+                disabled={page === lastPage}
+                onClick={() => {
+                    if (setPage && page && lastPage && page < lastPage)
+                        setPage(lastPage)
+                }}>
+                <img src={LAST} alt='last'></img>
             </button>
         </div>
     )

@@ -1,35 +1,23 @@
 .main_toolbar {
     display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    position: relative;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
-.search_button,
-.filter_button {
-    width: 50px;
+.search_button {
+    width: 30px;
     aspect-ratio: 1;
     border: none;
     outline: none;
-    border-radius: 10px;
-    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.search_button {
     background-color: var(--primary);
 }
 
-.filter_button {
-    background-color: var(--light);
-}
-
-.search_button > img,
-.filter_button > img {
+.search_button > img {
     height: 20px;
-    aspect-ratio: 1;
     pointer-events: none;
 }

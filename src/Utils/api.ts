@@ -32,7 +32,7 @@ export async function getPopular(page: number) {
         }))(item)
     })
 
-    return [results, response.data.total_pages]
+    return [results, 500]
 }
 
 export async function getAllGenres() {

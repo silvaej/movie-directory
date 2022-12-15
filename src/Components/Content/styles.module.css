@@ -1,0 +1,15 @@
+.header_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 5vh;
+}
+
+.header_section > h1 {
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 30px;
+    margin: 0;
+}

@@ -7,27 +7,19 @@ interface Props {
 }
 
 function MovieCard(props: Props) {
-    const { genres, id, original_title, overview, release_date } = props.movie
+    const { id, poster_path, original_title, overview } = props.movie
 
-    const [expanded, setExpanded] = useState<boolean>(false)
     return (
         <div className={css.container}>
-            <div className={css.banner}></div>
-            <div className={css.content}>
-                <div className={css.header_area}>
-                    <h1>{original_title}</h1>
-                    <p>({new Date(release_date).getFullYear()})</p>
-                    <button>Read more</button>
-                </div>
-                <div className={css.genres_section}>{genres?.join(', ')}</div>
-                <div
-                    className={`${css.overview_section} ${
-                        !expanded ? css.overview_section_shrink : ''
-                    }`}
-                    onClick={() => setExpanded(!expanded)}>
-                    {overview ? overview : 'No available synopsis.'}
-                </div>
-            </div>
+            <img
+                className={css.movie_poster}
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                alt='poster'></img>
+            <h1 className={css.movie_title}>{original_title}</h1>
+            <p className={css.movie_synopsis}>{overview}</p>
+            <a className={css.movie_read_more} href='#'>
+                Read more...
+            </a>
         </div>
     )
 }

@@ -19,6 +19,7 @@ import ResultBox from '../../Components/ResultBox'
 import Pagination from '../../Components/Pagination'
 import { getAllGenres, getPopular } from '../../Utils/api'
 import { MovieSkeleton } from '../../Interfaces/MovieSkeleton'
+import Content from '../../Components/Content'
 
 function Home() {
     const [activeFilters, dispatch] = useReducer(filterReducer, [])
@@ -59,6 +60,25 @@ function Home() {
         })()
     }, [])
 
+    useEffect(() => {
+        ;(async () => {
+            // Retrieving movies
+            const [movies] = await getPopular(page)
+            const moviesWithGenre = movies.map((movie: any) => {
+                return {
+                    ...movie,
+                    genres: filters
+                        .filter((genre: any) =>
+                            movie.genre_ids.includes(genre.id)
+                        )
+                        .map((genre: any) => genre.name),
+                }
+            })
+
+            setResults(moviesWithGenre)
+        })()
+    }, [page, filters])
+
     return (
         <HomeCtx.Provider
             value={{
@@ -76,17 +96,11 @@ function Home() {
                 setLastPage,
             }}>
             <main className={css.container}>
-                <section className={css.movies_directory}>
-                    <div className={css.directory_content}>
-                        <div className={css.toolbar}>
-                            <MainToolBar />
-                            {!!activeFilters.length && <FilterSection />}
-                        </div>
-                        <ResultBox />
-                    </div>
-                    <Pagination />
+                <section className={css.main_section}>
+                    <MainToolBar />
+                    <Content />
                 </section>
-                <section className={css.movie_information}></section>
+                <section className={css.now_showing_section}></section>
             </main>
         </HomeCtx.Provider>
     )
