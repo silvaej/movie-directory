@@ -6,7 +6,6 @@ import MovieCard from '../MovieCard'
 
 function ResultBox() {
     const { results } = useContext(HomeCtx)
-    console.log(results)
     return (
         <div className={css.result}>
             {results && !results.length ? (
@@ -21,7 +20,7 @@ function ResultBox() {
             ) : (
                 <div className={css.result_container}>
                     {results?.map((result) => (
-                        <MovieCard movie={result} />
+                        <MovieCard key={result.id} movie={result} />
                     ))}
                 </div>
             )}

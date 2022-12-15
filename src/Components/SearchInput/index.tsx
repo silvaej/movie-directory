@@ -3,6 +3,9 @@ import css from './styles.module.css'
 
 interface Props {
     placeholder: string
+    value: string
+    handleChange: (q: string) => void
+    handleSubmit: () => void
 }
 
 function SearchInput(props: Props) {
@@ -10,7 +13,12 @@ function SearchInput(props: Props) {
         <input
             className={css.searchbar}
             type='text'
-            placeholder={props.placeholder}></input>
+            value={props.value}
+            placeholder={props.placeholder}
+            onChange={(e) => props.handleChange(e.target.value)}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') props.handleSubmit()
+            }}></input>
     )
 }
 

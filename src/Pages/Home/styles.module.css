@@ -4,4 +4,15 @@
     margin-top: 5vh;
     margin-left: 50px;
     margin-right: 50px;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 5vh;
+}
+
+.main_section {
+    flex: 2.5;
+}
+
+.now_showing_section {
+    flex: 1;
 }

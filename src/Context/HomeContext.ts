@@ -9,12 +9,20 @@ interface HomeContexInterface {
     loading?: boolean
     lastPage?: number
     filters?: Array<FiltersInterface>
+    featureMovie?: MovieSkeleton
     openFilterBox?: boolean
+    header?: string
+    isSearching?: boolean
+    searchQuery?: string
     dispatch?: Dispatch<any>
     setOpenFilterBox?: Dispatch<any>
     setPage?: Dispatch<any>
     setLoading?: Dispatch<any>
     setLastPage?: Dispatch<any>
+    setResults?: Dispatch<any>
+    setHeader?: Dispatch<any>
+    setIsSearching?: Dispatch<any>
+    setSearchQuery?: Dispatch<any>
 }
 
 const HomeCtx = createContext<HomeContexInterface>({})
