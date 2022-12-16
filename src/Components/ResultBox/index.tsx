@@ -1,7 +1,7 @@
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 import { memo, useContext } from 'react'
 import css from './styles.module.css'
-import NoResultSticker from '../../Assets/images/no-result-sticker.svg'
+import NoResultSticker from '../../assets/images/no-result-sticker.svg'
 import MovieCard from '../MovieCard'
 
 function ResultBox() {

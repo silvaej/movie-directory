@@ -1,4 +1,4 @@
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 import { memo, useContext } from 'react'
 import FilterItem from '../FilterItem'
 import css from './styles.module.css'

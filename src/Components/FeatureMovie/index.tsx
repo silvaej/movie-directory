@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react'
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 import css from './styles.module.css'
-import TICKET from '../../Assets/images/ticket-icon.svg'
+import TICKET from '../../assets/images/ticket-icon.svg'
 
 function FeatureMovie() {
     const { featureMovie } = useContext(HomeCtx)

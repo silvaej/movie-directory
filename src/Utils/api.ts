@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MovieSkeleton } from '../Interfaces/MovieSkeleton'
+import { MovieSkeleton } from '../interfaces/MovieSkeleton'
 import { extractInfo } from './extractInfo'
 
 const BASE_URL = 'https://api.themoviedb.org/3'

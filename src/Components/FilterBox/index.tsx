@@ -1,11 +1,11 @@
 import css from './styles.module.css'
 
 /* COMPONENTS */
-import FilterItem from '../../Components/FilterItem'
+import FilterItem from '../../components/FilterItem'
 import { memo, useContext } from 'react'
 
 /* CONTEXT */
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 
 function FilterBox() {
     const { activeFilters, filters } = useContext(HomeCtx)

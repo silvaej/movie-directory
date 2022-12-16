@@ -1,4 +1,4 @@
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 import Pagination from '../Pagination'
 import ResultBox from '../ResultBox'
 import { useContext } from 'react'

@@ -1,10 +1,10 @@
 import { memo, useContext } from 'react'
 import css from './styles.module.css'
-import FIRST from '../../Assets/images/pagination-first.svg'
-import LAST from '../../Assets/images/pagination-last.svg'
-import NEXT from '../../Assets/images/pagination-next.svg'
-import PREV from '../../Assets/images/pagination-prev.svg'
-import HomeCtx from '../../Context/HomeContext'
+import FIRST from '../../assets/images/pagination-first.svg'
+import LAST from '../../assets/images/pagination-last.svg'
+import NEXT from '../../assets/images/pagination-next.svg'
+import PREV from '../../assets/images/pagination-prev.svg'
+import HomeCtx from '../../context/HomeContext'
 
 function Pagination() {
     const { page, lastPage, setPage } = useContext(HomeCtx)

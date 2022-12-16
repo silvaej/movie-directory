@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './Components/Header'
-import Home from './Pages/Home'
+import Header from './components/Header'
+import Home from './pages/Home'
 
 function App() {
     return (

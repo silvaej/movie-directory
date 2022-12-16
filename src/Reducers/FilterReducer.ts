@@ -1,4 +1,4 @@
-import FiltersInterface from '../Interfaces/FilterInterface'
+import FiltersInterface from '../interfaces/FilterInterface'
 
 interface Action {
     type: string

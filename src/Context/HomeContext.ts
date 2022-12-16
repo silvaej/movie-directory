@@ -1,6 +1,6 @@
 import { createContext, Dispatch } from 'react'
-import FiltersInterface from '../Interfaces/FilterInterface'
-import { MovieSkeleton } from '../Interfaces/MovieSkeleton'
+import FiltersInterface from '../interfaces/FilterInterface'
+import { MovieSkeleton } from '../interfaces/MovieSkeleton'
 
 interface HomeContexInterface {
     activeFilters?: Array<FiltersInterface>

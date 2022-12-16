@@ -1,5 +1,5 @@
-import { memo, useState } from 'react'
-import { MovieSkeleton } from '../../Interfaces/MovieSkeleton'
+import { memo } from 'react'
+import { MovieSkeleton } from '../../interfaces/MovieSkeleton'
 import css from './styles.module.css'
 
 interface Props {

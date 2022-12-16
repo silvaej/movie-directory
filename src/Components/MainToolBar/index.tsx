@@ -1,11 +1,11 @@
 import SearchInput from '../SearchInput'
 import css from './styles.module.css'
-import SearchIcon from '../../Assets/images/tool-search.svg'
-import RefreshIcon from '../../Assets/images/tool-refresh.svg'
+import SearchIcon from '../../assets/images/tool-search.svg'
+import RefreshIcon from '../../assets/images/tool-refresh.svg'
 import { memo, useState, useContext } from 'react'
-import { getPopular, searchMovie } from '../../Utils/api'
-import { transformGenre } from '../../Utils/transformGenre'
-import HomeCtx from '../../Context/HomeContext'
+import { getPopular, searchMovie } from '../../utils/api'
+import { transformGenre } from '../../utils/transformGenre'
+import HomeCtx from '../../context/HomeContext'
 
 function MainToolBar() {
     const [query, setQuery] = useState<string>('')

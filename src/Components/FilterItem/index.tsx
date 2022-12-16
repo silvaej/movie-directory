@@ -1,8 +1,8 @@
 import css from './styles.module.css'
 import Close from '../../Assets/images/filter-close.svg'
 import { memo, useContext, useEffect, useState } from 'react'
-import HomeCtx from '../../Context/HomeContext'
-import FiltersInterface from '../../Interfaces/FilterInterface'
+import HomeCtx from '../../context/HomeContext'
+import FiltersInterface from '../../interfaces/FilterInterface'
 
 interface Props {
     filter: FiltersInterface

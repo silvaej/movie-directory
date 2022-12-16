@@ -1,16 +1,16 @@
 import { useState, useReducer, useEffect } from 'react'
 
 /* COMPONENTS */
-import MainToolBar from '../../Components/MainToolBar'
+import MainToolBar from '../../components/MainToolBar'
 
 /* REDUCER */
-import filterReducer from '../../Reducers/FilterReducer'
+import filterReducer from '../../reducers/FilterReducer'
 
 /* CONTEXT */
-import HomeCtx from '../../Context/HomeContext'
+import HomeCtx from '../../context/HomeContext'
 
 /* INTERFACES */
-import FiltersInterface from '../../Interfaces/FilterInterface'
+import FiltersInterface from '../../interfaces/FilterInterface'
 
 /* STYLING ASSETS */
 import css from './styles.module.css'
@@ -19,11 +19,11 @@ import {
     getNowShowing,
     getPopular,
     searchMovie,
-} from '../../Utils/api'
-import { MovieSkeleton } from '../../Interfaces/MovieSkeleton'
-import Content from '../../Components/Content'
-import FeatureMovie from '../../Components/FeatureMovie'
-import { transformGenre } from '../../Utils/transformGenre'
+} from '../../utils/api'
+import { MovieSkeleton } from '../../interfaces/MovieSkeleton'
+import Content from '../../components/Content'
+import FeatureMovie from '../../components/FeatureMovie'
+import { transformGenre } from '../../utils/transformGenre'
 
 function Home() {
     const [activeFilters, dispatch] = useReducer(filterReducer, [])
